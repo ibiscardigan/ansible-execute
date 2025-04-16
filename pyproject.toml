@@ -1,0 +1,23 @@
+[project]
+name = "ansible-execute"
+version = "0.1.0"
+description = "Minimal Ansible CLI runner for homelab environments"
+authors = [{ name = "Hamish" }]
+requires-python = ">=3.8"
+dependencies = []
+
+[project.scripts]
+ansible-execute = "ansible_execute.main:main"
+
+[tool.black]
+line-length = 88
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203"]
+
+[tool.pylint.'MESSAGES CONTROL']
+disable = ["missing-module-docstring"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=ansible_execute --cov-fail-under=90"
