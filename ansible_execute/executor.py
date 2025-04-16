@@ -16,7 +16,7 @@ def run_ansible_playbook(env: str) -> None:
         "ansible-playbook",
         "ansible/playbooks/smoke_test.yml",
         "--extra-vars",
-        f"nodes={env}",
+        f"nodes=[{env}]",
     ]
 
     try:

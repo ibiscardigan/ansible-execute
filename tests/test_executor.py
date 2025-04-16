@@ -17,7 +17,7 @@ def test_run_ansible_playbook_success(mock_run: mock.Mock) -> None:
             "ansible-playbook",
             "ansible/playbooks/smoke_test.yml",
             "--extra-vars",
-            "nodes=dev",
+            "nodes=[dev]",
         ],
         check=True,
     )
