@@ -49,7 +49,7 @@ def main() -> None:
     # Normal execution path
     if not args.test:
         logger.info("Running Ansible playbook...")
-        executor.run_ansible_playbook(env=args.env)
+        executor.run_ansible_playbook(env=args.env, verbosity=args.verbose)
     else:
         logger.info(f"Test mode enabled, skipping playbook execution for {args.env}.")
 
