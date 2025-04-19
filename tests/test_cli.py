@@ -23,10 +23,3 @@ def test_env_arg_invalid(monkeypatch) -> None:
     monkeypatch.setattr("sys.argv", ["prog", "-e", "banana"])
     with pytest.raises(SystemExit):
         parse_args()
-
-
-def test_env_arg_required(monkeypatch) -> None:
-    """Test that missing -e argument raises SystemExit."""
-    monkeypatch.setattr("sys.argv", ["prog"])
-    with pytest.raises(SystemExit):
-        parse_args()

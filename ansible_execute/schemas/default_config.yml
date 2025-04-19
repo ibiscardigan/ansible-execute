@@ -1,0 +1,9 @@
+---
+logging:
+  type: dict
+  mandatory: true
+  children:
+    dir:
+      type: str
+      mandatory: true
+      default: /var/logs

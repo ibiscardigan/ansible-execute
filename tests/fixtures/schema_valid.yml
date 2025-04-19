@@ -1,0 +1,8 @@
+section:
+  children:
+    key:
+      default: default_value
+      mandatory: true
+      type: str
+  mandatory: true
+  type: dict

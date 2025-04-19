@@ -1,11 +1,20 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: check-yaml
+        exclude: ^tests/fixtures/
+
   - repo: https://github.com/psf/black
-    rev: 24.3.0
+    rev: 25.1.0
     hooks:
       - id: black
 
   - repo: https://github.com/pycqa/flake8
-    rev: 7.0.0
+    rev: 7.2.0
     hooks:
       - id: flake8
 
@@ -13,23 +22,19 @@ repos:
     hooks:
       - id: pylint
         name: pylint
-        entry: pylint
+        entry: bash -c 'pylint --recursive=y --rcfile=pyproject.toml "$@"'
         language: system
         types: [python]
         require_serial: true
-
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-      - id: end-of-file-fixer
-      - id: trailing-whitespace
-      - id: check-yaml
 
   - repo: local
     hooks:
       - id: pytest
         name: pytest with coverage
-        entry: pytest
+        entry: pytest --cov=ansible_execute --cov-report=term-missing
         language: system
         types: [python]
         pass_filenames: false
+        require_serial: true
+        always_run: true
+        stages: [pre-commit]
