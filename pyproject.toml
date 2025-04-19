@@ -6,6 +6,10 @@ authors = [{ name = "Hamish" }]
 requires-python = ">=3.8"
 dependencies = []
 
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [tool.setuptools.package-data]
 "schemas" = ["*.yml"]
 
