@@ -81,7 +81,7 @@ def test_main_runs_playbook_in_normal_mode(mock_run, env, caplog):
     # Assert: main() logged it
     assert "Running Ansible playbook..." in caplog.text
     # Assert: executor logged start of smoke test
-    assert f"Starting smoke test for environment: {env}" in caplog.text
+    assert f"Starting execution for environment: {env}" in caplog.text
     # Assert: executor logged success
     assert "Playbook executed successfully" in caplog.text
 
