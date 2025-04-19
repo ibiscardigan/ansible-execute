@@ -4,14 +4,19 @@ version = "0.1.11"
 description = "Minimal Ansible CLI runner for homelab environments"
 authors = [{ name = "Hamish" }]
 requires-python = ">=3.8"
-dependencies = []
+dependencies = [
+  "PyYAML>=6.0.0",
+]
 
 [build-system]
 requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+include-package-data = true
+
 [tool.setuptools.package-data]
-"schemas" = ["*.yml"]
+"ansible_execute.schemas" = ["*.yml"]
 
 [project.scripts]
 ansible-execute = "ansible_execute.main:main"
