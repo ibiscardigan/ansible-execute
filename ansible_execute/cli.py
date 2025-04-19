@@ -34,6 +34,13 @@ def parse_args() -> Namespace:
     )
 
     parser.add_argument(
+        "-p",
+        "--playbook",
+        default="master",
+        help="Playbook name to run (default: master)",
+    )
+
+    parser.add_argument(
         "-t",
         "--test",
         action="store_true",

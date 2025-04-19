@@ -7,7 +7,7 @@ import json
 logger = logging.getLogger(__name__)
 
 
-def run_ansible_playbook(env: str, verbosity: int = 0) -> None:
+def run_ansible_playbook(env: str, playbook: str, verbosity: int = 0) -> None:
     """
     Run the ansible playbook, passing the environment as the 'nodes' variable.
 
@@ -20,7 +20,7 @@ def run_ansible_playbook(env: str, verbosity: int = 0) -> None:
     vars_json = json.dumps({"nodes": [env]})
     cmd = [
         "ansible-playbook",
-        "ansible/playbooks/smoke_test.yml",
+        f"ansible/playbooks/{playbook}.yml",
         "--extra-vars",
         vars_json,
     ]
