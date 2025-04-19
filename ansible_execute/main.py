@@ -51,7 +51,7 @@ def main() -> None:
         logger.info("Running Ansible playbook...")
         executor.run_ansible_playbook(env=args.env)
     else:
-        logger.info("Test mode enabled, skipping playbook execution.")
+        logger.info(f"Test mode enabled, skipping playbook execution for {args.env}.")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,9 @@
 """Playbook execution logic."""
 
+import logging
 import subprocess
+
+logger = logging.getLogger(__name__)
 
 
 def run_ansible_playbook(env: str) -> None:
@@ -10,17 +13,21 @@ def run_ansible_playbook(env: str) -> None:
     Args:
         env (str): Environment (dev, staging, prod), passed as --extra-vars nodes.
     """
-    print(f"Running smoke test for environment: {env}")
-
+    logger.info("Starting smoke test for environment: %s", env)
     cmd = [
         "ansible-playbook",
         "ansible/playbooks/smoke_test.yml",
         "--extra-vars",
         f'nodes=["{env}"]',
     ]
+    logger.debug("Running command: %r", cmd)
 
     try:
         subprocess.run(cmd, check=True)
+        logger.info("Playbook executed successfully")
     except subprocess.CalledProcessError as exc:
-        print(f"Playbook execution failed with exit code {exc.returncode}")
+        logger.error(
+            "Playbook execution failed with exit code %d", exc.returncode, exc_info=True
+        )
+        # Mirror the old behavior of exiting with the same code.
         raise SystemExit(exc.returncode) from exc
