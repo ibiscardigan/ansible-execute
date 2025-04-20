@@ -3,6 +3,7 @@
 import logging
 import pathlib
 import json
+import os
 import time
 from datetime import datetime
 from typing import Optional
@@ -44,6 +45,9 @@ def configure_logging(
     logger = logging.getLogger()
     logger.setLevel(level)
     formatter = JSONFormatter()
+
+    os.environ["ANSIBLE_EXECUTE_LOG_DIR"] = str(log_directory)
+    os.environ["ANSIBLE_EXECUTE_VERBOSITY"] = str(verbosity)
 
     # Console logging
     if not non_interactive and enable_console:
